@@ -1,35 +1,38 @@
 const liters = document.querySelector(`#liters`);
 const percentage = document.querySelector(`#percentage`);
 const smallCups = document.querySelectorAll(`.cup-small`);
-
+const remained = document.querySelector(`#remained`);
 const numCups = smallCups.length;
 
-function emptyCups() {
-  smallCups.forEach(smallCup => smallCup.classList.remove('full'));
+function updateBigCup() {
+  const fullCupsNum = document.querySelectorAll(`.cup-small.full`).length;
+  const _percValue = fullCupsNum / numCups;
+  const percText = _percValue * 100 + '%';
+  const literRemain = 2 * (1 - _percValue);
+
+  percentage.style.height = percText;
+  percentage.innerText = percText;
+  liters.innerText = literRemain === 0 ? '' : literRemain + 'L';
+  liters.nextElementSibling.innerText = literRemain === 0 ? '' : 'Remained';
 }
+
 function fillCups(idx) {
-  Array.from(smallCups)
-    .filter((_, i) => i <= idx)
-    .forEach(smallCup => smallCup.classList.add('full'));
+  if (
+    smallCups[idx].classList.contains('full') &&
+    !smallCups[idx].nextElementSibling?.classList.contains('full')
+  )
+    idx--;
+  smallCups.forEach((cup, idx2) => {
+    if (idx2 <= idx) {
+      cup.classList.add('full');
+    } else cup.classList.remove('full');
+  });
+
+  updateBigCup();
 }
 
-smallCups.forEach((smallCup, idx) => {
-  smallCup.addEventListener('click', e => {
-    emptyCups();
+smallCups.forEach((cup, idx) => {
+  cup.addEventListener('click', e => {
     fillCups(idx);
-
-    const cupN = idx + 1;
-    const percValue = cupN / numCups;
-    const percText = percValue * 100 + '%';
-    percentage.style.height = percText;
-    percentage.innerText = percText;
-    if (percValue !== 1) {
-      console.log(percValue);
-      liters.innerText = `${2 * (1 - percValue)}L`;
-      liters.nextElementSibling.innerText = 'Remained';
-    } else {
-      liters.innerText = '';
-      liters.nextElementSibling.innerText = '';
-    }
   });
 });
