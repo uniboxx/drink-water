@@ -10,7 +10,6 @@ function updateBigCup() {
   const literRemain = 2 * (1 - _percValue);
 
   percentage.style.height = percText;
-  console.log(_percValue);
   percentage.innerText = _percValue === 0 ? '' : percText;
   liters.innerText = literRemain === 0 ? '' : literRemain + 'L';
   liters.nextElementSibling.innerText = literRemain === 0 ? '' : 'Remained';
