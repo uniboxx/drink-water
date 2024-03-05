@@ -1,7 +1,6 @@
 const liters = document.querySelector(`#liters`);
 const percentage = document.querySelector(`#percentage`);
 const smallCups = document.querySelectorAll(`.cup-small`);
-const remained = document.querySelector(`#remained`);
 const numCups = smallCups.length;
 
 function updateBigCup() {
@@ -11,7 +10,8 @@ function updateBigCup() {
   const literRemain = 2 * (1 - _percValue);
 
   percentage.style.height = percText;
-  percentage.innerText = percText;
+  console.log(_percValue);
+  percentage.innerText = _percValue === 0 ? '' : percText;
   liters.innerText = literRemain === 0 ? '' : literRemain + 'L';
   liters.nextElementSibling.innerText = literRemain === 0 ? '' : 'Remained';
 }
