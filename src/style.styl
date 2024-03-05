@@ -1,8 +1,76 @@
 @import 'base' 
   
-.container 
-  width 100% 
+h3
+  font-weight 400
+  margin 10px 0
 
-@media screen and (min-width phone)
-  .container 
-    max-width 500px
+.cup
+  background-color #fff
+  border 4px solid borderColor
+  color borderColor
+  border-radius 0 0 40px 40px
+  height 230px
+  width 150px
+  margin 30px 0
+  display flex
+  flex-direction column
+  overflow hidden
+
+  & .remained
+    display flex
+    flex-direction column
+    align-items center
+    justify-content center
+    text-align center
+    flex 1
+    transition .3s ease
+
+    & span 
+      font-size 20px
+      font-weight bold
+
+    & small
+      font-size 12px
+
+  & .percentage
+    background-color fillColor
+    display flex
+    justify-content center
+    align-items center
+    font-size 30px
+    font-weight bold
+    height 0
+    transition .3s ease
+
+
+
+  &.cup-small
+    height 95px
+    width 50px
+    border-radius 0 0 15px 15px
+    background-color rgba(255,255,255,.9)
+    cursor pointer
+    font-size 14px
+    align-items center
+    justify-content center
+    text-align center
+    margin 5px
+    transition .3s ease
+
+    &.full
+      background-color fillColor 
+      color #fff
+
+.text 
+  text-align center
+  margin 0 0 20px      
+
+.cups
+  display flex
+  align-items center
+  justify-content center
+  flex-wrap wrap
+  width 280px
+
+
+
